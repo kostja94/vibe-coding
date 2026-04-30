@@ -73,7 +73,7 @@ For RN / mini programs / hybrid playbooks, add a dedicated doc—don’t mash th
 
 **Sources:** [Lovable FAQ — What tech stacks does Lovable know?](https://lovable.dev/faq/capabilities/tech-stack/lovable-tech-stack)
 
-**Further reading (migrate / SEO / dual repos):** see [`convertlovabletonextjs.md`](./convertlovabletonextjs.md).
+**Further reading (migrate / SEO / dual repos):** see [`convert-lovable-to-nextjs.md`](./convert-lovable-to-nextjs.md).
 
 ---
 

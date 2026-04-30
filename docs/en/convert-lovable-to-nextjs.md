@@ -57,7 +57,7 @@ Align on **default delivery** before debating migration:
 **GitHub sync:**
 
 | Item | Notes |
-|------|-------|
+|------|------|
 | **Sync** | Connect GitHub; **secrets stay out of repo**, configure locally/CI yourself |
 | **Code ownership** | Production React/TS belongs to user (see Code Export FAQ) |
 

@@ -15,6 +15,7 @@
 - [Who this is for](#who-this-is-for)
 - [What’s included](#whats-included)
 - [Quick navigation](#quick-navigation)
+- [Document naming](#document-naming)
 - [FAQ](#faq)
 - [Scope, limits, freshness](#scope-limits-freshness)
 - [Related projects](#related-projects)
@@ -36,7 +37,7 @@
 | Document | Topics |
 |----------|--------|
 | [Product frontend stack reference (EN)](docs/en/vibe-coding-product-frontend-stack.md) | International and regional builders, **browser-only scope**, citations to official FAQs and docs—**Next.js**, **React**, **Vite**, **Tailwind**, **Framer**, **Firebase Studio**, CloudBase AI, etc. |
-| [Migrate Lovable to Next.js — migration & SEO (EN)](docs/en/convertlovabletonextjs.md) | **Repo A vs Repo B**, **App Router**, **Metadata API**, checklists, **official URL reference list** only. |
+| [Migrate Lovable to Next.js — migration & SEO (EN)](docs/en/convert-lovable-to-nextjs.md) | **Repo A vs Repo B**, **App Router**, **Metadata API**, checklists, **official URL reference list** only. |
 | Same two guides in **[中文](README.zh-CN.md)** | Mirrors under `docs/zh/` ([产品前端技术栈](docs/zh/Vibe-Coding产品前端技术栈.md), [迁移至 Next.js](docs/zh/迁移Lovable至Nextjs.md)). |
 
 ---
@@ -46,7 +47,15 @@
 | Goal | English | 中文 |
 |------|---------|------|
 | **Stack comparison** across AI builders | [vibe-coding-product-frontend-stack.md](docs/en/vibe-coding-product-frontend-stack.md) | [Vibe-Coding产品前端技术栈.md](docs/zh/Vibe-Coding产品前端技术栈.md) |
-| **Lovable → Next.js**, SEO & dual repo | [convertlovabletonextjs.md](docs/en/convertlovabletonextjs.md) | [迁移Lovable至Nextjs.md](docs/zh/迁移Lovable至Nextjs.md) |
+| **Lovable → Next.js**, SEO & dual repo | [convert-lovable-to-nextjs.md](docs/en/convert-lovable-to-nextjs.md) | [迁移Lovable至Nextjs.md](docs/zh/迁移Lovable至Nextjs.md) |
+
+---
+
+## Document naming
+
+English Markdown under `docs/en/` uses **kebab-case** with **hyphens between words** (e.g. `convert-lovable-to-nextjs.md`) so GitHub blob URLs stay human-readable—the same intent as **`kostja94/marketing-skills`** skill slugs. Chinese sources live under `docs/zh/` with UTF-8 filenames; pairing is by topic, not literal transliteration.
+
+**Full spec:** [`docs/meta/document-naming.md`](docs/meta/document-naming.md).
 
 ---
 

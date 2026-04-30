@@ -15,6 +15,7 @@
 - [适合谁](#适合谁)
 - [包含什么](#包含什么)
 - [文档导航](#文档导航)
+- [文档命名](#文档命名)
 - [常见问题](#常见问题)
 - [范围说明与新鲜度](#范围说明与新鲜度)
 - [相关项目](#相关项目)
@@ -46,7 +47,17 @@
 | 用途 | English | 中文 |
 |------|---------|------|
 | **产品默认 / 典型前端栈**对照 | [vibe-coding-product-frontend-stack.md](docs/en/vibe-coding-product-frontend-stack.md) | [Vibe-Coding产品前端技术栈.md](docs/zh/Vibe-Coding产品前端技术栈.md) |
-| **Lovable → Next.js**、SEO、双仓 | [convertlovabletonextjs.md](docs/en/convertlovabletonextjs.md) | [迁移Lovable至Nextjs.md](docs/zh/迁移Lovable至Nextjs.md) |
+| **Lovable → Next.js**、SEO、双仓 | [convert-lovable-to-nextjs.md](docs/en/convert-lovable-to-nextjs.md) | [迁移Lovable至Nextjs.md](docs/zh/迁移Lovable至Nextjs.md) |
+
+---
+
+## 文档命名
+
+`docs/en/` 下的英文 Markdown 文件名采用 **kebab-case**：**单词与小写专有片段之间用短横线**，例如 `convert-lovable-to-nextjs.md`、`vibe-coding-product-frontend-stack.md`，避免 `convertlovabletonextjs` 这类黏连_slug，也与 **`kostja94/marketing-skills`**（可读 slug、稳定链接）的实践一致。
+
+`docs/zh/` 可使用 **UTF-8 中文文件名**；中英文成对稿件以主题为纲互链。
+
+**全文规范：** [`docs/meta/document-naming.md`](docs/meta/document-naming.md)（主要为英文执笔，条目含中文说明）。
 
 ---
 

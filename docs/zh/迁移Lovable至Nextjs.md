@@ -1,6 +1,6 @@
 # Lovable → Next.js 迁移与 SEO：标准指南
 
-**[English](../en/convertlovabletonextjs.md)**
+**[English](../en/convert-lovable-to-nextjs.md)**
 
 本文为 **公开资料与检索整理的实践指南**，不构成采购或法律意见；能力与界面以当期 **Lovable / Next.js / 部署平台** 官方文档为准。
 
