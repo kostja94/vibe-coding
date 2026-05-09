@@ -8,6 +8,8 @@ This document **curates public materials and vendor documentation**. Default tem
 
 **Last curated:** 2026-05-01; **scope revision:** 2026-05-01 (narrowed to web)
 
+**Next steps:** If you've already picked Lovable and need SSR / SEO, the companion guide covers the full migration path: [Convert Lovable to Next.js](./convert-lovable-to-nextjs.md).
+
 ---
 
 ## At-a-glance (web frontend focus)

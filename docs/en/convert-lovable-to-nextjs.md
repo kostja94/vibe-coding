@@ -24,7 +24,7 @@ This guide **curates public materials and search findings**; it is not procureme
 
 | Primary goal | Recommended path | Details |
 |--------------|------------------|---------|
-| **Ship demos quickly**, iterate on copy & interaction **inside Lovable** | Stay on Lovable (**Vite SPA default**) | Sections 2–3 |
+| **Ship demos quickly**, iterate on copy & interaction **inside Lovable** | Stay on Lovable (**Vite SPA default**) | §2 (platform strengths) + §3 (export & GitHub sync) |
 | **Search/social bots need readable HTML**, no framework switch yet | **Prerender/DNS‑style SaaS or self-hosted**—evaluate vendors yourself | §5.1 |
 | **Strong SEO conventions**, hybrid rendering, deep Vercel-style pipelines | **Migrate to Next.js** (technical paths §5.2) | §§4–6 |
 | **Must align with mono-main site + shared CI/CD** (Next/Nuxt etc.) | Let **canonical stack decide**—React favors Next; Vue often needs **rewrite or isolation** | End of §4 |

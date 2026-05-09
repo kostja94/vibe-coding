@@ -95,7 +95,7 @@
 |------|------|
 | [marketing-skills](https://github.com/kostja94/marketing-skills) | **SEO / 内容 / 广告 / GEO / GitHub-parasite** 等成套技能 Markdown，可与本库「栈选型 + 迁移」衔接。 |
 
-**合作：** 若在 Vibe Coding 产品或营销 Agent 中需要集成 SEO 技能，可 **[邮件联系](mailto:zyjstc@gmail.com)**。
+**联系：** 问题、勘误、或与此参考配套的新工具？欢迎 **[邮件联系](mailto:zyjstc@gmail.com)**。
 
 ---
 

@@ -22,7 +22,7 @@
 
 ---
 
-## Who this is for?
+## Who this is for
 
 | If you… | Why open this repo |
 |--------|--------------------|
@@ -37,7 +37,7 @@
 | Document | Topics |
 |----------|--------|
 | [Product frontend stack reference (EN)](docs/en/vibe-coding-product-frontend-stack.md) | International and regional builders, **browser-only scope**, citations to official FAQs and docs—**Next.js**, **React**, **Vite**, **Tailwind**, **Framer**, **Firebase Studio**, CloudBase AI, etc. |
-| [Migrate Lovable to Next.js — migration & SEO (EN)](docs/en/convert-lovable-to-nextjs.md) | **Repo A vs Repo B**, **App Router**, **Metadata API**, checklists, **official URL reference list** only. |
+| [Migrate Lovable to Next.js — migration & SEO (EN)](docs/en/convert-lovable-to-nextjs.md) | **Repo A vs Repo B**, **App Router**, **Metadata API**, checklists; references **only official Lovable and Next.js URLs** (no third-party tools or paid migrators). |
 | Same two guides in **[中文](README.zh-CN.md)** | Mirrors under `docs/zh/` ([产品前端技术栈](docs/zh/Vibe-Coding产品前端技术栈.md), [迁移至 Next.js](docs/zh/迁移Lovable至Nextjs.md)). |
 
 ---
@@ -53,7 +53,7 @@
 
 ## Document naming
 
-English Markdown under `docs/en/` uses **kebab-case** with **hyphens between words** (e.g. `convert-lovable-to-nextjs.md`) so GitHub blob URLs stay human-readable—the same intent as **`kostja94/marketing-skills`** skill slugs. Chinese sources live under `docs/zh/` with UTF-8 filenames; pairing is by topic, not literal transliteration.
+English Markdown under `docs/en/` uses **kebab-case** with **hyphens between words** (e.g. `convert-lovable-to-nextjs.md`) so GitHub blob URLs stay human-readable and predictable across agents and bookmarks. Chinese sources live under `docs/zh/` with UTF-8 filenames; pairing is by topic, not literal transliteration.
 
 **Full spec:** [`docs/meta/document-naming.md`](docs/meta/document-naming.md).
 
@@ -93,7 +93,7 @@ Chinese and English **mirror the same structure** where possible so you can diff
 |------|------|
 | [marketing-skills](https://github.com/kostja94/marketing-skills) | Agent-oriented **SEO, content, pages, GEO, GitHub-parasite** skills—pairs well after you pick Next vs Vite. |
 
-**Partnerships:** Shipping a vibe-coding product or agent that should bundle SEO skills? **[Email](mailto:zyjstc@gmail.com)**.
+**Contact:** Questions, corrections, or new tooling that pairs with this reference? **[Email](mailto:zyjstc@gmail.com)**.
 
 ---
 
