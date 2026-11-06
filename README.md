@@ -16,8 +16,8 @@ Markdown skill library for AI agents — detect live tech stacks, migrate Lovabl
 # Install specific skills (recommended — pick 1–2 per task)
 npx skills add kostja94/vibe-coding --skill lovable-to-nextjs
 
-# Install all three
-npx skills add kostja94/vibe-coding --skill lovable-to-nextjs tech-stack-detect theme-switch
+# Install the engineering skills
+npx skills add kostja94/vibe-coding --skill lovable-to-nextjs tech-stack-detect theme-switch site-structure-inventory
 
 # List available
 npx skills add kostja94/vibe-coding --list
@@ -41,6 +41,7 @@ Skills are **markdown workflows** (`SKILL.md` + `references/` + optional `script
 
 | Scenario | Skills |
 |----------|--------|
+| Inspect a live site: pages, URL families, navigation and indexing signals | [site-structure-inventory](skills/site-structure-inventory/SKILL.md) |
 | "What tech stack does this site use?" / competitor URL | `tech-stack-detect` |
 | "Is this built with Lovable?" / AI builder fingerprint | `tech-stack-detect` |
 | Migrate Lovable (Vite / TanStack Start) → Next.js for production SEO | `lovable-to-nextjs` |
@@ -159,6 +160,7 @@ skills/
 │   ├── SKILL.md
 │   ├── references/     # code-rewrite, seo-templates, deployment, normalization, stack-detection
 │   └── scripts/        # detect, diagnostic, validate (PowerShell)
+├── site-structure-inventory/       # live page inventory and observed IA
 ├── tech-stack-detect/
 │   ├── SKILL.md
 │   ├── references/     # signatures, ai-builder-fingerprints, report-template
