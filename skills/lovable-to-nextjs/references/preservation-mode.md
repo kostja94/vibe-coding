@@ -42,7 +42,7 @@
 
 ## M6 核对搜索入口
 
-沿用已验收的逐页 SEO 字段与 JSON-LD，检查页面级 openGraph 覆盖布局时是否丢失公共字段。按 M0 清单对比 title、description、H1、canonical、robots 与 sitemap。涉及 locale 或路径变更时，将批准的 URL 映射同时用于重定向、hreflang、内链和语言切换器。保留源站尾斜杠策略。
+沿用已验收的逐页 SEO 字段与 JSON-LD，检查页面级 openGraph 覆盖布局时是否丢失公共字段。按 M0 清单对比 title、description、H1、canonical、robots 与 sitemap。涉及多语言 URL 架构调整时，按 [multilingual-site-build](https://github.com/kostja94/vibe-coding/tree/main/skills/multilingual-site-build) 建立并验证映射。保留源站尾斜杠策略。
 
 ## M7 验证等价性
 

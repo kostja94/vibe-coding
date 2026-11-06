@@ -17,7 +17,7 @@ Markdown skill library for AI agents — detect live tech stacks, migrate Lovabl
 npx skills add kostja94/vibe-coding --skill lovable-to-nextjs
 
 # Install the engineering skills
-npx skills add kostja94/vibe-coding --skill lovable-to-nextjs tech-stack-detect theme-switch site-structure-inventory
+npx skills add kostja94/vibe-coding --skill lovable-to-nextjs tech-stack-detect theme-switch site-structure-inventory homepage-replication multilingual-site-build
 
 # List available
 npx skills add kostja94/vibe-coding --list
@@ -92,10 +92,12 @@ Ask your agent — it picks the right skill. Examples:
 
 ## Skills Overview
 
-**3 skills** — each self-contained under `skills/<name>/`. Read `SKILL.md` for the full pipeline.
+Each skill is self-contained under `skills/<name>/`. Read `SKILL.md` for the full pipeline.
 
 | Skill | Scope |
 |-------|-------|
+| [homepage-replication](skills/homepage-replication/SKILL.md) | Replicate a homepage and verify visual and interactive fidelity. |
+| [multilingual-site-build](skills/multilingual-site-build/SKILL.md) | Build or normalize locale routes, content coverage and indexable URLs. |
 | [lovable-to-nextjs](skills/lovable-to-nextjs/SKILL.md) | Migrate an approved prototype with parity checks, or normalize a project in place. |
 | **tech-stack-detect** | Any URL → 8-layer analysis (headers, cookies, DNS, HTML, JS globals, network) · confidence-rated report · AI builder fingerprints |
 | **theme-switch** | 12 built-in themes → shadcn/Tailwind-aligned `:root` CSS variables · reference URL extraction · trend discovery |
