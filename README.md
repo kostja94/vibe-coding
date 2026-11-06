@@ -96,18 +96,10 @@ Ask your agent — it picks the right skill. Examples:
 
 | Skill | Scope |
 |-------|-------|
-| **lovable-to-nextjs** | Lovable repo → **Next.js 16** App Router · Phase 0–9 with gates · same-repo `feature/nextjs-migration` branch · router/SEO/normalization rewrite |
+| [lovable-to-nextjs](skills/lovable-to-nextjs/SKILL.md) | Migrate an approved prototype with parity checks, or normalize a project in place. |
 | **tech-stack-detect** | Any URL → 8-layer analysis (headers, cookies, DNS, HTML, JS globals, network) · confidence-rated report · AI builder fingerprints |
 | **theme-switch** | 12 built-in themes → shadcn/Tailwind-aligned `:root` CSS variables · reference URL extraction · trend discovery |
 
-### lovable-to-nextjs
-
-| Aspect | Detail |
-|--------|--------|
-| **Input** | Lovable export: Vite + React Router or TanStack Start |
-| **Output** | Next.js 16 / React 19 · migrated routes · Metadata API · sitemap/robots |
-| **Scripts** | `detect-lovable-stack.ps1`, `quality-diagnostic.ps1`, `validate-migration.ps1` |
-| **Optional calls** | Phase 0.7 → `tech-stack-detect` · Phase 1.4 → `theme-switch` |
 
 ### tech-stack-detect
 
@@ -125,7 +117,6 @@ Ask your agent — it picks the right skill. Examples:
 | **Output** | `:root` block for `index.css` / `globals.css` — swap tokens, keep components |
 | **Scripts** | `validate-tokens.ps1` |
 
-**Workflow:** `lovable-to-nextjs` orchestrates; say **"skip intro"** or **"just do it"** on repeat runs to jump straight to Phase 0.
 
 ```
                     +---------------------------+

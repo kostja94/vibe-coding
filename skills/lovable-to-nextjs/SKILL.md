@@ -1,10 +1,10 @@
 ---
 name: lovable-to-nextjs
-description: "Migrate a Lovable (Vite + React Router / TanStack Start) project to Next.js 16 App Router in the same Git repo. 10-phase pipeline with per-phase validation gates: stack detection, quality diagnostics, component migration + normalization, route mapping, SEO migration, old-stack cleanup, Vercel deployment. Optionally calls tech-stack-detect for deeper analysis and theme-switch for design token generation."
-when_to_use: Use when the user has a Lovable project that needs to migrate to Next.js, says "migrate to Next.js" / "从 Lovable 搬到 Next" / "convert Lovable project", or asks about moving from Vite/TanStack to Next.js App Router. Also use when a project built with Lovable needs production-grade SEO, RSC, or Vercel deployment.
+description: "Migrate a Lovable (Vite + React Router / TanStack Start) project to Next.js 16 App Router with approved-site preservation or in-place normalization. 10-phase pipeline with per-phase validation gates: stack detection, quality diagnostics, component migration + normalization, route mapping, SEO migration, old-stack cleanup, Vercel deployment. Optionally calls tech-stack-detect for deeper analysis and theme-switch for design token generation."
 license: Proprietary
-compatibility: Requires Bash (git, npm/pnpm/bun, ripgrep), Read, Write, Edit, Glob, Grep. Optionally uses WebFetch. Optionally calls tech-stack-detect and theme-switch skills.
 metadata:
+  when_to_use: Use when the user has a Lovable project that needs to migrate to Next.js, says "migrate to Next.js" / "从 Lovable 搬到 Next" / "convert Lovable project", or asks about moving from Vite/TanStack to Next.js App Router. Also use when a project built with Lovable needs production-grade SEO, RSC, or Vercel deployment.
+  compatibility: Requires Bash (git, npm/pnpm/bun, ripgrep), Read, Write, Edit, Glob, Grep. Optionally uses WebFetch. Optionally calls tech-stack-detect and theme-switch skills.
   author: harness-engineering
   version: "1.0.0"
   allowed-tools: Read Bash Write Edit Glob Grep WebFetch
@@ -12,7 +12,9 @@ metadata:
 
 # Lovable to Next.js 16 Migration Engine
 
-Migrate a Lovable project to **Next.js 16 App Router** in the same Git repo. Move a file, normalize a file — no second pass.
+Choose the workflow before changing files:
+- For an accepted prototype or a published site with existing URLs, follow [preservation mode](references/preservation-mode.md) from source capture through production verification. Its M0–M8 gates govern this path. Use the stack and rewrite references for implementation details.
+- For an in-place conversion with engineering normalization, follow phases 0–9 below. Record any approved changes to presentation, content, and URLs before editing.
 
 ## Core Principle
 
@@ -25,21 +27,9 @@ Two responsibilities, equally important:
 | Transport | Page content, copy, interactions, visuals stay 1:1. What the user sees does not change. |
 | Normalization | Hardcoded values → tokens, large files → split components, missing types → added, flat directories → organized. Visual output unchanged, code quality upgraded. |
 
-## Next.js 16 Key Differences from 15
+## Next.js 16 request APIs
 
-Next.js 16 ships with **React 19** as default. Critical migration implications:
-
-| Aspect | Next.js 15 (React 18) | Next.js 16 (React 19) |
-|---|---|---|
-| `params` in pages/layouts | `Promise<{ slug }>` → must `await` | `{ slug }` → synchronous destructuring |
-| `searchParams` | `Promise<{ ... }>` → must `await` | `{ ... }` → synchronous |
-| `generateMetadata` params | `Promise<{ slug }>` | `{ slug }` (sync) |
-| `cookies()` / `headers()` | `await cookies()` | Same (server-side, no change) |
-| `use()` hook | Requires `react@experimental` | Built-in, works in client components |
-| React Compiler | Not default | Enabled by default in Next.js 16 |
-| `create-next-app` | `--app --src-dir` | Same flags, React 19 default |
-
-**All code templates in this skill use Next.js 16 / React 19 conventions (synchronous params).** If the user's project must stay on React 18, switch to Promise-style params — but do not mix.
+Await route params and page search params in server code, including dynamic metadata. Client navigation hooks return their values directly. See the [Next.js 16 upgrade guide](https://nextjs.org/docs/app/guides/upgrading/version-16#async-request-apis-breaking-change).
 
 ## Execution Pipeline
 
@@ -324,21 +314,21 @@ export default function Page() {
 }
 ```
 
-### Step 4.2: Create dynamic pages (Next.js 16 / React 19 — synchronous params)
+### Step 4.2: Create dynamic pages (Next.js 16 / React 19 — async params)
 
 ```tsx
 import { getVoiceBySlug } from "@/data/voiceChangerData";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const voice = getVoiceBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const voice = getVoiceBySlug((await params).slug);
   if (!voice) return {};
-  return { title: voice.title, alternates: { canonical: `/voice-changer/${params.slug}` } };
+  return { title: voice.title, alternates: { canonical: `/voice-changer/${(await params).slug}` } };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const voice = getVoiceBySlug(params.slug);
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const voice = getVoiceBySlug((await params).slug);
   if (!voice) notFound();
   return <VoiceDetail voice={voice} />;
 }

@@ -67,9 +67,9 @@
 
 ```diff
 - const { slug } = useParams();
-+ export default function Page({ params }: { params: { slug: string } }) {
-+   // params.slug is synchronous in Next.js 16 / React 19
-+   return <div>{params.slug}</div>;
++ export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
++   // Read the resolved route parameter
++   return <div>{(await params).slug}</div>;
 + }
 ```
 
@@ -147,24 +147,24 @@
 + }
 ```
 
-### 2.3 Dynamic page metadata (Next.js 16 / React 19 synchronous params)
+### 2.3 Dynamic page metadata (Next.js 16 / React 19 async params)
 
 ```tsx
 import type { Metadata } from "next";
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   return {
-    title: `${params.slug} | Brand`,
-    description: `Learn about ${params.slug}`,
+    title: `${(await params).slug} | Brand`,
+    description: `Learn about ${(await params).slug}`,
     openGraph: {
-      title: `${params.slug} | Brand`,
-      description: `Learn about ${params.slug}`,
+      title: `${(await params).slug} | Brand`,
+      description: `Learn about ${(await params).slug}`,
     },
   };
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
-  return <div>{params.slug}</div>;
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  return <div>{(await params).slug}</div>;
 }
 ```
 
@@ -386,50 +386,13 @@ export default nextConfig;
 
 ## 7. Next.js 16 / React 19 Specifics
 
-### 7.1 Synchronous params (Critical)
+### 7.1 Request props
 
-In Next.js 16 with React 19, `params` is a **plain synchronous object**:
-
-```tsx
-// ✅ Next.js 16 / React 19
-export default function Page({ params }: { params: { slug: string } }) {
-  return <h1>{params.slug}</h1>;
-}
-
-// ✅ generateMetadata is also synchronous
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  return { title: params.slug };
-}
-
-// ❌ DO NOT do this (Next.js 15 pattern)
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  // ...
-}
-```
-
-### 7.2 Synchronous searchParams
-
-```tsx
-// ✅ Next.js 16
-export default function Page({ searchParams }: { searchParams: { q?: string } }) {
-  return <div>Search: {searchParams.q}</div>;
-}
-
-// ❌ Next.js 15 pattern — do not await
-export default async function Page({ searchParams }: { searchParams: Promise<{ q: string }> }) {
-  const { q } = await searchParams;
-}
-```
+Await page and metadata params as shown in section 2.3. For query strings, await the page's searchParams prop before reading its fields.
 
 ### 7.3 React Compiler
 
-Next.js 16 enables the React Compiler by default. Implications:
-
-- No need for manual `useMemo` / `useCallback` in most cases
-- The compiler auto-memoizes component renders
-- `key` props on list items are still required
-- Can be disabled in `next.config.ts` if issues arise: `experimental: { reactCompiler: false }`
+Enable the compiler explicitly if the project uses it.
 
 ### 7.4 Actions Pattern
 
@@ -474,7 +437,7 @@ export function ContactForm() {
 | `<Link to="">` | `<Link href="">` |
 | `<Outlet />` | `{children}` in layout |
 | `useParams()` (client) | `useParams()` from `next/navigation` |
-| Route params (server) | `{ params }` prop (synchronous) |
+| Route params (server) | await the `params` prop |
 | `VITE_*` env vars | `NEXT_PUBLIC_*` / server-only |
 | `<img>` | `<Image>` from `next/image` |
 | Google Fonts `<link>` | `next/font/google` |

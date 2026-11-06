@@ -112,7 +112,7 @@ export default function StaticPage() {
 
 ## 3. Dynamic Page Metadata Template
 
-Next.js 16 / React 19 — `params` is synchronous, NOT a Promise.
+Next.js 16 / React 19 — await the `params` prop.
 
 ```tsx
 import type { Metadata } from "next";
@@ -120,24 +120,24 @@ import { notFound } from "next/navigation";
 import { getItemBySlug } from "@/lib/api";
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const item = getItemBySlug(params.slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const item = getItemBySlug((await params).slug);
   if (!item) return { title: "Not Found" };
 
   return {
     title: item.title,
     description: item.description,
     alternates: {
-      canonical: `/items/${params.slug}`,
+      canonical: `/items/${(await params).slug}`,
     },
     openGraph: {
       title: item.title,
       description: item.description,
       images: [item.image],
-      url: `/items/${params.slug}`,
+      url: `/items/${(await params).slug}`,
       type: "article",
     },
   };
@@ -148,8 +148,8 @@ export async function generateStaticParams() {
   return items.map((item) => ({ slug: item.slug }));
 }
 
-export default function DynamicPage({ params }: PageProps) {
-  const item = getItemBySlug(params.slug);
+export default async function DynamicPage({ params }: PageProps) {
+  const item = getItemBySlug((await params).slug);
   if (!item) notFound();
 
   return (

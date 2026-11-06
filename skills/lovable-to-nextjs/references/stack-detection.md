@@ -124,43 +124,14 @@ Fill this table for every project migration:
 | 1 | `/` | `app/page.tsx` | Static | Home page |
 | 2 | `/about` | `app/about/page.tsx` | Static | |
 | 3 | `/legal/privacy` | `app/legal/privacy/page.tsx` | Static | |
-| 4 | `/use-cases/:slug` | `app/use-cases/[slug]/page.tsx` | Dynamic | `params.slug` synchronous in React 19 |
+| 4 | `/use-cases/:slug` | `app/use-cases/[slug]/page.tsx` | Dynamic | Await the page params |
 | 5 | `/blog/:postId` | `app/blog/[postId]/page.tsx` | Dynamic | May need `generateStaticParams` |
 | 6 | (layout) | `app/layout.tsx` | — | Root layout from `__root.tsx` |
 | 7 | (layout) | `app/(auth)/layout.tsx` | — | Auth layout group |
 
 ## 6. Dynamic Route Handling in Next.js 16 (React 19)
 
-**Critical:** In Next.js 16 with React 19, `params` and `searchParams` are **synchronous objects**, NOT Promises.
-
-### Page Component
-
-```tsx
-// ✅ Correct — Next.js 16 / React 19
-export default function Page({ params }: { params: { slug: string } }) {
-  return <div>{params.slug}</div>;
-}
-
-// ❌ Wrong — legacy Next.js 15 async style
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  return <div>{slug}</div>;
-}
-```
-
-### generateMetadata
-
-```tsx
-// ✅ Correct — synchronous params
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  return { title: `${params.slug} | Brand` };
-}
-
-// ❌ Wrong — do not await params
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  // ...
-}
-```
+Await the server props in pages and metadata. See [dynamic page examples](code-rewrite.md#23-dynamic-page-metadata-nextjs-16--react-19-async-params).
 
 ### generateStaticParams
 
@@ -183,13 +154,3 @@ export default function DynamicClient() {
   return <div>{params.slug}</div>;
 }
 ```
-
-### Summary
-
-| API | Next.js 15 | Next.js 16 (React 19) |
-|-----|------------|----------------------|
-| Page `params` | `Promise<{ slug: string }>` | `{ slug: string }` (sync) |
-| Page `searchParams` | `Promise<{ q: string }>` | `{ q: string }` (sync) |
-| `generateMetadata` params | `Promise` | Synchronous |
-| `useParams()` | Synchronous | Synchronous (unchanged) |
-| `useSearchParams()` | Synchronous | Synchronous (unchanged) |
